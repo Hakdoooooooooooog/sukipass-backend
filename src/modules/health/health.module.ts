@@ -9,7 +9,5 @@ export const healthModule: AppModule = {
   basePath: '/health',
   openapiPaths: healthPaths,
   register: ({ prisma }) =>
-    createHealthRouter(
-      new HealthController(new HealthService(new PrismaHealthRepository(prisma))),
-    ),
+    createHealthRouter(new HealthController(new HealthService(new PrismaHealthRepository(prisma)))),
 };
