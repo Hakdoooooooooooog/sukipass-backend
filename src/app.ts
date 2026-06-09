@@ -8,6 +8,7 @@ import { buildOpenApiDocument } from './lib/openapi.js';
 import { modules } from './modules/index.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFound } from './middleware/notFound.js';
+import { API_PREFIX } from './config/constants.js';
 
 export function createApp(): Express {
   const app = express();
@@ -24,10 +25,10 @@ export function createApp(): Express {
   });
   app.use('/docs', swaggerUi.serve, swaggerUi.setup(openApiDocument));
 
-  // --- Composition root: register every feature module ---
+  // --- Composition root: register every feature module under the versioned API prefix ---
   const deps = { prisma };
   for (const featureModule of modules) {
-    app.use(featureModule.basePath, featureModule.register(deps));
+    app.use(`${API_PREFIX}${featureModule.basePath}`, featureModule.register(deps));
   }
 
   // --- Tail middleware ---
