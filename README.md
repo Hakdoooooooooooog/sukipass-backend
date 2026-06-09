@@ -30,7 +30,7 @@ All API routes are served under a version prefix defined once in `src/config/con
 
 ## Prerequisites
 
-- Node 20+
+- Node 22+
 - Docker Desktop
 
 ## Getting started
