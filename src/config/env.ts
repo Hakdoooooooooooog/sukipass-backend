@@ -21,4 +21,6 @@ if (!parsed.success) {
 export const env = parsed.data;
 
 /** CORS_ORIGIN parsed into an array of allowed origins. */
-export const corsOrigins = env.CORS_ORIGIN.split(',').map((o) => o.trim());
+export const corsOrigins = env.CORS_ORIGIN.split(',')
+  .map((o) => o.trim())
+  .filter(Boolean);
