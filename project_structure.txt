@@ -1,0 +1,78 @@
+sukipass-backend
+├── README.md
+├── commitlint.config.js
+├── docker-compose.yml
+├── eslint.config.js
+├── package-lock.json
+├── package.json
+├── prisma
+│   ├── migrations
+│   │   ├── 20260609133150_init_auth_and_users
+│   │   │   └── migration.sql
+│   │   ├── 20260609151550_added_models_and_add_account_number_to_user
+│   │   │   └── migration.sql
+│   │   ├── 20260612131800_add_new_business_fields
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   ├── schema.prisma
+│   └── seed.ts
+├── prisma.config.ts
+├── project_structure.txt
+├── scripts
+│   └── generate-openapi.ts
+├── src
+│   ├── app.ts
+│   ├── config
+│   │   ├── constants.ts
+│   │   └── env.ts
+│   ├── lib
+│   │   ├── asyncHandler.ts
+│   │   ├── openapi.ts
+│   │   └── prisma.ts
+│   ├── middleware
+│   │   ├── auth.middleware.ts
+│   │   ├── errorHandler.ts
+│   │   ├── notFound.ts
+│   │   ├── ownership.middleware.ts
+│   │   ├── role.middleware.ts
+│   │   └── validate.ts
+│   ├── modules
+│   │   ├── admin
+│   │   │   ├── admin.controller.ts
+│   │   │   ├── admin.module.ts
+│   │   │   ├── admin.repository.ts
+│   │   │   ├── admin.route.ts
+│   │   │   └── admin.service.ts
+│   │   ├── auth
+│   │   │   ├── auth.controller.ts
+│   │   │   ├── auth.module.ts
+│   │   │   ├── auth.repository.ts
+│   │   │   ├── auth.route.ts
+│   │   │   ├── auth.schema.ts
+│   │   │   └── auth.service.ts
+│   │   ├── business
+│   │   │   ├── business.controller.ts
+│   │   │   ├── business.module.ts
+│   │   │   ├── business.repository.ts
+│   │   │   ├── business.route.ts
+│   │   │   ├── business.schema.ts
+│   │   │   └── business.service.ts
+│   │   ├── health
+│   │   │   ├── health.controller.ts
+│   │   │   ├── health.module.ts
+│   │   │   ├── health.openapi.ts
+│   │   │   ├── health.repository.ts
+│   │   │   ├── health.routes.ts
+│   │   │   ├── health.schema.ts
+│   │   │   └── health.service.ts
+│   │   ├── index.ts
+│   │   ├── module.types.ts
+│   │   └── staff
+│   │       ├── staff.controller.ts
+│   │       ├── staff.module.ts
+│   │       ├── staff.repository.ts
+│   │       ├── staff.route.ts
+│   │       ├── staff.schema.ts
+│   │       └── staff.service.ts
+│   └── server.ts
+└── tsconfig.json

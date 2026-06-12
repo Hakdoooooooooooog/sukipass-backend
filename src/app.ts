@@ -13,7 +13,12 @@ import { API_PREFIX } from './config/constants.js';
 export function createApp(): Express {
   const app = express();
 
-  app.use(cors({ origin: corsOrigins }));
+  app.use(
+    cors({
+      origin: corsOrigins,
+      allowedHeaders: ['Content-Type', 'Authorization'],
+    }),
+  );
   app.use(express.json());
 
   // Build the OpenAPI document once at startup.
