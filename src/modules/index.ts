@@ -1,5 +1,14 @@
 import type { AppModule } from './module.types.js';
 import { healthModule } from './health/health.module.js';
+import { authModule } from './auth/auth.module.js';
+import { staffModule } from './staff/staff.module.js';
+import { businessModule } from './business/business.module.js';
+import { adminModule } from './admin/admin.module.js';
 
-/** All feature modules. Add a module here to register its routes + OpenAPI paths. */
-export const modules: AppModule[] = [healthModule];
+export const modules: AppModule[] = [
+  healthModule,
+  authModule,
+  staffModule,
+  businessModule,
+  adminModule,
+];

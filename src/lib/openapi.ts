@@ -4,13 +4,11 @@ import { modules } from '../modules/index.js';
 import { env } from '../config/env.js';
 import { API_PREFIX } from '../config/constants.js';
 
-/** Merges every module's OpenAPI paths under the versioned API prefix. */
 function collectPaths(): ZodOpenApiPathsObject {
   const paths: ZodOpenApiPathsObject = {};
   for (const featureModule of modules) {
     for (const [path, item] of Object.entries(featureModule.openapiPaths)) {
       const key = `${API_PREFIX}${path}`;
-      // Deep-merge so multiple modules contributing the same path keep all their methods.
       paths[key] = { ...paths[key], ...item };
     }
   }
@@ -26,6 +24,29 @@ export function buildOpenApiDocument(): ReturnType<typeof createDocument> {
       description: 'Digital loyalty platform API for Philippine MSMEs.',
     },
     servers: [{ url: `http://localhost:${env.PORT}` }],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+      schemas: {
+        RegisterOwnerSchema: {
+          type: 'object',
+          required: ['username', 'email', 'password', 'businessName', 'physicalAddress'],
+          properties: {
+            username: { type: 'string' },
+            email: { type: 'string', format: 'email' },
+            password: { type: 'string', minLength: 6 },
+            businessName: { type: 'string' },
+            physicalAddress: { type: 'string' },
+          },
+        },
+      },
+    },
+    security: [{ bearerAuth: [] }],
     paths: collectPaths(),
   });
 }
