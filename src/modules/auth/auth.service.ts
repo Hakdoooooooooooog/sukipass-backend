@@ -25,6 +25,10 @@ export class AuthService {
       throw new Error('Invalid credentials');
     }
 
+    if (user.isTemporary) {
+      throw new Error('Account not yet claimed. Please complete your registration first.');
+    }
+
     const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
@@ -38,7 +42,7 @@ export class AuthService {
         role: user.role,
       },
       JWT_SECRET,
-      { expiresIn: '1d' },
+      { expiresIn: '7d' },
     );
 
     const safeUser = { ...user };
