@@ -7,7 +7,7 @@ const EnvSchema = z.object({
   PORT: z.coerce.number().int().positive().default(3000),
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   CORS_ORIGIN: z.string().default('http://localhost:5173'),
-  DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
+  DATABASE_URL_LOCAL: z.string().min(1, 'DATABASE_URL_LOCAL is required'),
 });
 
 const parsed = EnvSchema.safeParse(process.env);
